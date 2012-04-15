@@ -1,0 +1,728 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title>scaleFrame</title>
+<script src="https://raw.github.com/BrynM/bpmv/master/bpmv.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="jQuery.scaleFrame.js"></script>
+<!-- good list of colors at http://www.w3schools.com/cssref/css_colornames.asp -->
+<style id="page_style">
+html, body {
+	margin : 0;
+	padding : 0;
+	font-family: Arial, Sans-Serif;
+}
+code {
+	margin: 0;
+	padding: 0;
+}
+iframe {
+	margin: 0;
+	padding: 0;
+	border: 5px solid DarkRed;
+}
+textarea {
+	width: 99%;
+	min-height: 150px;
+}
+pre {
+	margin: 5px 20px 5px 20px;
+	padding: 5px;
+	border: 1px dashed #555;
+	background-color: #eee;
+	color: #555;
+}
+h1, h2, h3, h4, h5 {
+	margin: 0;
+	padding: 0;
+}
+.border-green {
+	border: 5px solid YellowGreen;
+}
+.border-yellow {
+	border: 5px solid Yellow;
+}
+#bad_example {
+	float: left;
+}
+.clear {
+	clear: both;
+}
+.example {
+	background-color: LightBlue;
+	margin: 5px;
+	padding: 0;
+	float: left;
+}
+.floating-content {
+	position: fixed;
+	top: 100px;
+	left: 0px;
+	margin : 0;
+	padding : 5px;
+	padding-left : 30px;
+	background-color: rgba( 200, 200, 200, 0.9 );
+	background-image:         linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
+	background-image:      -o-linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
+	background-image:    -moz-linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
+	background-image:     -ms-linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
+	background-image: -webkit-linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
+	border: 3px solid black;
+	z-index: 500;
+	font-size: 80%;
+	display: none;
+	min-width: 350px;
+}
+#floating_css_content {
+}
+#floating_toc_content {
+}
+.floating-close {
+	float: right;
+	border: 3px solid black;
+	background-color: Navy;
+	color: white;
+	padding: 2px;
+}
+.floating-close:hover {
+	background-color: white;
+	color: Navy;
+}
+#floating_css_content h2 {
+	margin: 0;
+	padding: 0;
+}
+#floating_css_content textarea {
+	width: 95%;
+	max-width: 95%;
+	min-height: 200px;
+	padding: 5px;
+	border: 1px dashed #555;
+	color: #555;
+}
+.floating-tabby {
+}
+#floating_tabby {
+	position: fixed;
+	height: 25px;
+	line-height: 20px;
+	top: 75px;
+	left: 0px;
+	list-style-type: none;
+	display: block;
+	z-index: 1000;
+	margin: 0;
+	padding: 0;
+	background-color: Navy;
+	-moz-transform-origin: bottom left;
+	-webkit-transform-origin: bottom left;
+	-o-transform-origin: bottom left;
+	-ms-transform-origin: bottom left;
+	transform-origin: bottom left;
+	-moz-transform: rotate( 90deg ); 
+	-webkit-transform: rotate( 90deg ); 
+	-o-transform: rotate( 90deg );
+	-ms-transform: rotate( 90deg );
+	transform: rotate( 90deg ); 
+}
+#floating_tabby li {
+	z-index: 1000;
+	display: inline-block;
+	background-color: transparent;
+	color: white;
+	font-weight: bold;
+	margin: 2px;
+	padding: 0 5px 0 5px;
+}
+#floating_tabby li:hover {
+	background-color: white;
+	color: Navy;
+}
+.frame-full {
+	height: 768px;
+	width: 1024px;
+}
+.frame-half {
+	height: 768px;
+	width: 1024px;
+	-moz-transform-origin: top left;
+	-webkit-transform-origin: top left;
+	-o-transform-origin: top left;
+	-ms-transform-origin: top left;
+	transform-origin: top left;
+	-moz-transform: scale( 0.5, 0.5 ); 
+	-webkit-transform: scale( 0.5, 0.5 ); 
+	-o-transform: scale( 0.5, 0.5 );
+	-ms-transform: scale( 0.5, 0.5 );
+	transform: scale( 0.5, 0.5 ); 
+}
+.frame-quarter {
+	height: 768px;
+	width: 1024px;
+	-moz-transform-origin: top left;
+	-webkit-transform-origin: top left;
+	-o-transform-origin: top left;
+	-ms-transform-origin: top left;
+	transform-origin: top left;
+	-moz-transform: scale( 0.25, 0.25 ); 
+	-webkit-transform: scale( 0.25, 0.25 ); 
+	-o-transform: scale( 0.25, 0.25 );
+	-ms-transform: scale( 0.25, 0.25 );
+	transform: scale( 0.25, 0.25 ); 
+}
+.frame-third {
+	height: 768px;
+	width: 1024px;
+	-moz-transform-origin: top left;
+	-webkit-transform-origin: top left;
+	-o-transform-origin: top left;
+	-ms-transform-origin: top left;
+	transform-origin: top left;
+	-moz-transform: scale( 0.333, 0.333 ); 
+	-webkit-transform: scale( 0.333, 0.333 ); 
+	-o-transform: scale( 0.333, 0.333 );
+	-ms-transform: scale( 0.333, 0.333 );
+	transform: scale( 0.333, 0.333 ); 
+}
+.info-ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.info-li {
+	margin: 0;
+	padding: 0;
+	padding-bottom: 10px;
+}
+.info-li h2 {
+	border-bottom: 5px solid black;
+}
+.info-li h3 {
+	border-bottom: 2px solid black;
+	margin: 0;
+	padding: 0;
+}
+.info-li p {
+	margin : 0;
+	padding: 0;
+}
+.info-li p:not(:first-child) {
+	margin-top : 10px;
+}
+.myZoom {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	list-style-type: none;
+	background-color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.myZoom-item {
+	width: 25%;
+	padding: 0;
+	float: left;
+	text-align: center;
+	background-color: transparent;
+}
+.myZoom-item:hover {
+	color: #fff;
+	cursor: pointer;
+	background-color: rgba( 128, 128, 128, 0.85);
+}
+.options {
+	margin: 0;
+	padding: 0;
+	border: 1px solid black;
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 80%;
+}
+.options tr {
+	margin: 0;
+	padding: 0;
+}
+.options tr:nth-child(1) {
+	background-color: black;
+	color: white;
+}
+.options tr:nth-child(odd):not(:first-child) {
+	background-color: Lavender;
+}
+.options tr:nth-child(even) {
+	background-color: LavenderBlush;
+}
+.options tr td:nth-child(1) {
+	width: 10%;
+	font-weight: bold;
+}
+.options tr td:nth-child(2) {
+	font-style: italic;
+	width: 25%;
+}
+.options tr td p {
+	margin : 0;
+	padding: 0;
+}
+.options tr td p:not(:first-child) {
+	margin-top : 10px;
+}
+.options tr td, .options tr th {
+	margin: 0;
+	padding: 5px;
+}
+.options tr td {
+	border-top: 1px solid black;
+}
+.options tr th {
+	text-align: left;
+}
+.options tr td:not(:first-child){
+	border-left: 1px solid black;
+}
+.pre-css {
+	background-color: PaleGoldenRod;
+}
+.pre-html {
+	background-color: HoneyDew;
+	border-style: dotted;
+}
+.pre-js {
+	background-color: Ivory;
+	border: 3px double #555;
+}
+#readme {
+	margin : 0;
+	padding : 10px 40px 10px 40px;
+}
+#readme h1 {
+	margin-bottom: 20px;
+	color: Navy;
+	font-weight: bold;
+	font-style: italic;
+}
+#readme .header-links {
+	list-style-type: none;
+	margin: 0;
+	padding: 5px;
+	font-size: 60%;
+	background-color: rgba( 0, 0, 128, 0.9 );
+	background-image:         linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	background-image:      -o-linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	background-image:    -moz-linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	background-image:     -ms-linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	background-image: -webkit-linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	float: right;
+}
+#readme .header-links * a {
+	color: white;
+	text-decoration: none;
+}
+#readme .header-links * a:hover {
+	color: white;
+	text-decoration: underline;
+}
+#toc li {
+	background-color: transparent;
+}
+#toc li:hover {
+	cursor: pointer;
+	background-color: rgba( 255, 255, 255, 0.55);
+}
+</style>
+</head>
+<body>
+	<ul id="floating_tabby" class="floating-tabby">
+		<li id="floating_tabby_toc" class="floating-tabby-item">Contents</li>
+		<li id="floating_tabby_css" class="floating-tabby-item">Show Page CSS</li>
+	</ul>
+	<div id="floating_toc_content" class="floating-content">
+		<div id="floating_toc_content_close" class="floating-close">close</div>
+		<h2>Table of Contents</h2>
+		<ul id="toc">
+		</ul>
+	</div>
+	<div id="floating_css_content" class="floating-content">
+		<div id="floating_css_content_close" class="floating-close">close</div>
+		<h2>Applied Page CSS</h2>
+		<p>For your perusal, here are the applied page CSS styles.</p>
+		<textarea id="page_style_code" class="pre-css"></textarea>
+	</div>
+	<div id="readme">
+		<div>
+			<ul class="header-links">
+				<li><a href="https://github.com/BrynM/jQuery.scaleFrame.js" target="_blank">jQuery.scaleFrame.js on GitHub</a></li>
+				<li><a href="https://github.com/BrynM" target="_blank">Bryn on GitHub</a></li>
+				<li><a href="http://brynmosher.com" target="_blank">Bryn's Home Page</a></li>
+			</ul>
+			<h1>jQuery.scaleFrame.js</h1>
+			<div class="clear" ></div>
+		</div>
+		<ul class="info-ul">
+			<li class="info-li">
+				<h2>Copyright &amp; Credits</h2>
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li class="info-li">
+				<h2>Document Conventions</h2>
+				<p>
+					In this document, the background-color and border-style of source code denotes what kind of source code it is. Here is the color key.
+				</p>
+				<pre class="pre-css"><code>/* CSS Code */</code></pre>
+				<pre class="pre-html"><code>&lt;!-- HTML Code --&gt;</code></pre>
+				<pre class="pre-js"><code>// JavaScript Code</code></pre>
+				<p>
+					The result of given sets of code, if feasible, are shown under the heading &quot;Result&quot; immediately following the sets of code.
+					The results have been given a LightBlue background so that you can see their area within the layout if they are bigger than their contents.
+				</p>
+				<p>
+					All mentions of HTML tags in plain old text will be in all caps and have it's outer brackets (&quot;&lt;&quot; and &quot;&gt;&quot;).
+				</p>
+				<p>
+					Each &lt;IFRAME&gt; has been given a DarkRed border so that you can see their total area as well.
+				</p>
+			</li>
+			<li class="info-li">
+				<h2>What Would Normally Happen (The Problem)</h2>
+				<p>
+					While playing with CSS transforms, I noticed something I didn't like when dealing with &lt;IFRAME&gt; elements.
+					Thought I could scale the elements and have all of their functionality remain intact, they would still take up the their original size in the layout.
+				</p>
+				<p>
+					This is what happens when there's just CSS transforms applied to an &lt;IFRAME&gt;.
+					Regardless of the viewable size of the frame, the element takes up the original amount of space in the layout.
+					In the example below, a DIV wraps our &lt;IFRAME&gt; to help visualize the real space the &lt;IFRAME&gt; takes up.
+				</p>
+				<pre class="pre-css"><code id="normal_style"></code></pre>
+				<pre class="pre-html"><code>&#60;div class=&#34;example&#34;&#62;
+   &#60;iframe id=&#34;bad_example&#34; src=&#34;testhtml/brynmosher.com.htm&#34; class=&#34;frame-quarter&#34;&#62;&#60;/iframe&#62;
+   &#60;div class=&#34;clear&#34;&#62;&#60;/div&#62;
+&#60;/div&#62;</code></pre>
+				<h3>Result</h3>
+				<div class="example">
+					<iframe id="bad_example" src="http://brynmosher.com/index.php?conts=3d&amp;theme=half" class="frame-quarter"></iframe>
+					<div class="clear" ></div>
+				</div>
+				<div class="clear" ></div>
+			</li>
+			<li class="info-li">
+				<h2>The Solution</h2>
+				<p>
+					It seemed as though fitting a scaled &lt;IFRAME&gt; into an element with overflow set to hidden would be needed to correctly make the &lt;IFRAME&gt; take up its scaled area in the layout.
+					It also seemed like a tedious thing to do that would be made easier with a jQuery plugin.
+					It would be nice to have optional zoom controls and keep mind of the &lt;IFRAME&gt;'s CSS &quot;float&quot; value as well.
+				</p>
+				<p>
+					So that's what I did. I give you jQuery.fn.scaleFrame().
+				</p>
+				<div class="clear" ></div>
+			</li>
+			<li class="info-li">
+				<h2>Syntax and Default Options Example</h2>
+				<p>
+				</p>
+				<pre class="pre-css"><code id="default_options_style"></code></pre>
+				<pre class="pre-html"><code>&#60;div class=&#34;example&#34;&#62;
+   &#60;iframe id=&#34;default_options&#34; src=&#34;testhtml/brynmosher.com.htm&#34; class=&#34;frame-quarter&#34;&#62;&#60;/iframe&#62;
+   &#60;div class=&#34;clear&#34;&#62;&#60;/div&#62;
+&#60;/div&#62;</code></pre>
+				<pre class="pre-js"><code id="default_options_scaleframe_setup_code"></code></pre>
+				<h3>Result</h3>
+				<div class="example">
+					<iframe id="default_options" src="http://brynmosher.com/index.php?conts=3d&amp;theme=half" class="frame-quarter"></iframe>
+					<div class="clear" ></div>
+				</div>
+				<div class="clear" ></div>
+			</li>
+			<li class="info-li">
+				<h2>Options</h2>
+				<p>
+					There are only a couple of truly universal options.
+					The options are primarily for controlling zoom navigation, should you choose to use it.
+				</p>
+				<table class="options">
+					<tr><th>Option</th><th>Default</th><th>Description</th></tr>
+					<tr>
+						<td>reApply</td>
+						<td>false</td>
+						<td><p>If scaleFrame has already been applied to an element, remove it first and then re-create it using this newest call.</p></td>
+					</tr>
+					<tr>
+						<td>wrapClass</td>
+						<td>&quot;&quot;</td>
+						<td><p>Additional CSS class name to apply to the wrapping element. This can be a single class name or multiple class names. The names should be in the format of a normal HTML &quot;class&quot; attribute.</p></td>
+					</tr>
+					<tr>
+						<td>zoom</td>
+						<td>0</td>
+						<td>
+							<p>Setting the &quot;zoom&quot; option to a positive value greater than 0 will enable the zoom controls to appear with the affected &lt;IFRAME&gt; and the incremental controls will zoom by the amount given in the &quot;zoom&quot; option.</p>
+							<p>When setting the value for the &quot;zoom&quot; option, you may want to start with a small floating-point value. An equivalent zoom of 100% is a &quot;zoom&quot; option value of 1 and an equivalent zoom of 50% is a &quot;zoom&quot; option value of 0.5.</p>
+							<p>
+								The zoom controls container is a &lt;UL&gt; element and does not have any default styling.
+								The zoom controls themselves are made up of a &lt;LI&gt; elements and do not have any default styling.
+								To stle these elements, see the &quot;zoomClass&quot; option.
+							</p>
+							<p>
+								There is a final &lt;LI&gt; element at the end of the zoom controls container with a &quot;style&quot; attribute of &quot;clear: both;&quot;.
+								This final &lt;LI&gt; is a safguard allowing you to style the individual control elements in any way you choose, including floating them.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomClass</td>
+						<td>&quot;&quot;</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option.</strong></p>
+							<p>Additional CSS class name to apply to the zoom controls &lt;UL&gt; element and its child &lt;LI&gt; elements. This should be a single class name.</p>
+							<p>
+								The child &lt;LI&gt; elements will all have a class applied with &quot;-item&quot; appended to the &quot;zoomClass&quot; option.
+								Additionally, the child &lt;LI&gt; elements will each have their type appended to this class name for convenience.
+								For example, the &quot;min&quot; zoom control will have &quot;-min&quot; appended to the class name.
+							</p>
+							<p>
+								Here is some sample CSS assuming that the &quot;zoomClass&quot; option is set to &quot;my-nav-class&quot;.
+								<pre class="pre-css"><code>.my-nav-class {
+   /* the nav container &lt;UL&gt; element */
+}
+.my-nav-class-item {
+   /* affects all nav children */
+}
+.my-nav-class-max {
+   /* affects only the &quot;max&quot; zoom nav control */
+}
+.my-nav-class-min {
+   /* affects only the &quot;min&quot; zoom nav control */
+}
+.my-nav-class-minus {
+   /* affects only the &quot;minus&quot; zoom nav control */
+}
+.my-nav-class-plus {
+   /* affects only the &quot;plus&quot; zoom nav control */
+}
+.my-nav-class-reset {
+   /* affects only the &quot;reset&quot; zoom nav control */
+}
+.my-nav-class-whole {
+   /* affects only the &quot;100%&quot; zoom nav control */
+}</code></pre>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomMax</td>
+						<td>3</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option.</strong></p>
+							<p>Maximum amount that the frame can be scaled using the zoom controls. Must be a value of at least 0.</p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomMin</td>
+						<td>0.05</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option.</strong></p>
+							<p>Minimum amount that the frame can be scaled using the zoom controls. Must be a value of at least 0.</p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomControls</td>
+						<td>[ &quot;min&quot;, &quot;minus&quot;, &quot;reset&quot;, &quot;whole&quot;, &quot;plus&quot;, &quot;max&quot; ]</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option.</strong></p>
+							<p></p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomStrMax</td>
+						<td>&quot;max&quot;</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;max&quot; in the &quot;zoomControls&quot; option.</strong></p>
+							<p></p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomStrMin</td>
+						<td>&quot;min&quot;</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;min&quot; in the &quot;zoomControls&quot; option.</strong></p>
+							<p></p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomStrMinus</td>
+						<td>&quot;-&quot;</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;minus&quot; in the &quot;zoomControls&quot; option.</strong></p>
+							<p></p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomStrPlus</td>
+						<td>&quot;+&quot;</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;plus&quot; in the &quot;zoomControls&quot; option.</strong></p>
+							<p></p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomStrReset</td>
+						<td>&quot;reset&quot;</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;reset&quot; in the &quot;zoomControls&quot; option.</strong></p>
+							<p></p>
+						</td>
+					</tr>
+					<tr>
+						<td>zoomStrWhole</td>
+						<td>&quot;100%&quot;</td>
+						<td>
+							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;whole&quot; in the &quot;zoomControls&quot; option.</strong></p>
+							<p></p>
+						</td>
+					</tr>
+				</table>
+			</li>
+			<li class="info-li">
+				<h2>With Default (Ugly) Controls Example</h2>
+				<p>Here's an example with only setting the &quot;zoom&quot; option.</p>
+				<pre class="pre-css"><code id="with_controls_style"></code></pre>
+				<pre class="pre-html"><code>&#60;div class=&#34;example&#34;&#62;
+   &#60;iframe id=&#34;with_controls&#34; src=&#34;testhtml/brynmosher.com.htm&#34; class=&#34;frame-quarter&#34;&#62;&#60;/iframe&#62;
+   &#60;div class=&#34;clear&#34;&#62;&#60;/div&#62;
+&#60;/div&#62;</code></pre>
+				<pre class="pre-js"><code id="with_controls_scaleframe_setup_code"></code></pre>
+				<h3>Result</h3>
+				<div class="example">
+					<iframe id="with_controls" src="http://brynmosher.com/index.php?conts=3d&amp;theme=half" class="frame-quarter"></iframe>
+					<div class="clear" ></div>
+				</div>
+				<div class="clear" ></div>
+			</li>
+			<li class="info-li">
+				<h2>With Options Example</h2>
+				<p>
+				</p>
+				<pre class="pre-css"><code id="with_options_style"></code></pre>
+				<pre class="pre-html"><code>&#60;div class=&#34;example&#34;&#62;
+   &#60;iframe id=&#34;with_options&#34; src=&#34;testhtml/brynmosher.com.htm&#34; class=&#34;frame-quarter&#34;&#62;&#60;/iframe&#62;
+   &#60;div class=&#34;clear&#34;&#62;&#60;/div&#62;
+&#60;/div&#62;</code></pre>
+				<pre class="pre-js"><code id="with_options_scaleframe_setup_code"></code></pre>
+				<h3>Result</h3>
+				<div class="example">
+					<iframe id="with_options" src="http://brynmosher.com/index.php?conts=3d&amp;theme=half" class="frame-quarter"></iframe>
+					<div class="clear" ></div>
+				</div>
+				<div class="clear" ></div>
+			</li>
+		</ul>
+	</div>
+
+<script id="default_options_scaleframe_setup">
+$(document).ready( function () {
+	$('#default_options').scaleFrame();
+});
+</script>
+
+<script id="with_controls_scaleframe_setup">
+$(document).ready( function () {
+	$('#with_controls').scaleFrame( { 'zoom' : 0.1 } );
+});
+</script>
+
+<script id="with_options_scaleframe_setup">
+$(document).ready( function () {
+	var options = {
+		'wrapClass' : 'border-green',
+		'zoom' : 0.05,
+		'zoomClass' : 'myZoom',
+		'zoomMax' : 1.25,
+		'zoomMin' : 0.25,
+		'zoomControls' : [ 'minus', 'reset', 'whole', 'plus' ]
+	};
+	$('#with_options').scaleFrame( options );
+});
+</script>
+
+<script>
+
+function handle_menu_click ( ev ) {
+	var css = $('#floating_css_content')
+		, ele = null
+		, floaters = $('.floating-content')
+		, toc = $('#floating_toc_content');
+	if ( bpmv.obj(ev) && bpmv.obj(ev.currentTarget) ) {
+		ele = $(ev.currentTarget);
+		$('.floating-content').hide();
+		if ( bpmv.obj(ele) && bpmv.num(ele.length) ) {
+			floaters.hide();
+			if ( ele.is( '#floating_tabby_css' ) ) {
+					css.show();
+			}
+			if ( ele.is( '#floating_tabby_toc' ) ) {
+				toc.show();
+			}
+		}
+	}
+}
+
+function handle_toc_click ( ev ) {
+	var ele = null
+		, tocI = null;
+	if ( bpmv.obj(ev) && bpmv.obj(ev.currentTarget) ) {
+		ele = $(ev.currentTarget);
+		if ( bpmv.obj(ele) && bpmv.num(ele.length) ) {
+			tocI = ele.attr( 'toc' );
+			if ( tocI ) {
+				$('html,body').stop( true, true );
+				$('html,body').animate( {
+						'scrollTop' : $('h2[toc='+tocI+']').offset().top - 50
+					}, 300 );
+			}
+		}
+	}
+}
+
+$(document).ready( function () {
+	var lineRgx = /^\s*[\r\n]+/g
+		, tabRgx = /\t/g
+		, infos = $('.info-li h2')
+		, toc = $('#toc')
+		, tocI = null
+		, tocH = null
+		, appliedCss = $('#page_style').text().replace( tabRgx, '   ').replace( lineRgx, '' )
+		, frameQuarterCss = appliedCss.match( /\.frame-quarter\s*\{[^\}]+\}/ ).toString()
+		, frameCss = appliedCss.match( /iframe\s*\{[^\}]+\}/ ).toString();
+	$('#with_controls_scaleframe_setup_code').text( bpmv.txt2html( $('#with_controls_scaleframe_setup').text().replace( tabRgx, '   ').replace( lineRgx, '' ) ) );
+	$('#with_controls_style').text( frameCss + '\n' + frameQuarterCss );
+
+	$('#with_options_scaleframe_setup_code').text( bpmv.txt2html( $('#with_options_scaleframe_setup').text().replace( tabRgx, '   ').replace( lineRgx, '' ) ) );
+	$('#with_options_style').text( appliedCss.match( /\.border-green\s*\{[^\}]+\}/ ).toString() + '\n' + frameCss + '\n' + frameQuarterCss + '\n' + appliedCss.match( /\.myZoom[^\{}]*\{[^\}]+\}/g ).join( '\n' ) );
+
+	$('#default_options_scaleframe_setup_code').text( bpmv.txt2html( $('#default_options_scaleframe_setup').text().replace( tabRgx, '   ').replace( lineRgx, '' ) ) );
+	$('#default_options_style').text( frameCss + '\n' + frameQuarterCss );
+
+	$('#page_style_code').text( bpmv.txt2html( appliedCss ) );
+	$('.floating-tabby-item').click( handle_menu_click );
+	$('.floating-close').click( handle_menu_click );
+
+	$('#normal_style').text( frameCss + '\n' + frameQuarterCss );
+	for ( var aI = 0; aI < infos.length; aI++ ) {
+		tocH = $(infos[aI]);
+		tocH.attr( 'toc', aI );
+		tocI = $('<li>'+tocH.text()+'</li>');
+		tocI.attr( 'toc', aI );
+		tocI.click( handle_toc_click );
+		toc.append( tocI );
+	}
+});
+
+</script>
+
+</body>
+</html>
