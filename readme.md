@@ -1,6 +1,6 @@
-jQuery.scaleFrame.js
+jQuery.scaleFrame.js - A way to make IFRAME tags with CSS scale() transforms behave in layout.
 
-The documentation for jQuery.scaleFrame.js is available at <http://brynmosher.com/jQuery.scaleFrame.js/>.
+The documentation with examples for jQuery.scaleFrame.js is available at <http://brynmosher.com/jQuery.scaleFrame.js/>.
 
 LICENSE
 Copyright (C) 2012, Bryn P. Mosher (GPLv2)
