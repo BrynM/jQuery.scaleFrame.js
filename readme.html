@@ -63,12 +63,12 @@ h1, h2, h3, h4, h5 {
 	padding : 5px;
 	padding-left : 30px;
 	background-color: rgba( 200, 200, 200, 0.9 );
-	background-image:         linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
-	background-image:      -o-linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
-	background-image:    -moz-linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
-	background-image:     -ms-linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
-	background-image: -webkit-linear-gradient( left , rgba( 254, 254, 254, 0.65 ) 25%, rgba( 235, 235, 235, 0.95 ) 90% );
-	border: 3px solid black;
+	background-image:         linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	background-image:      -o-linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	background-image:    -moz-linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	background-image:     -ms-linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	background-image: -webkit-linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	border: 3px solid Navy;
 	z-index: 500;
 	font-size: 80%;
 	display: none;
@@ -354,6 +354,7 @@ h1, h2, h3, h4, h5 {
 		<div>
 			<ul class="header-links">
 				<li><a href="https://github.com/BrynM/jQuery.scaleFrame.js" target="_blank">jQuery.scaleFrame.js on GitHub</a></li>
+				<li><a href="http://brynmosher.com/jQuery.scaleFrame.js/" target="_blank">jQuery.scaleFrame.js Online Docs</a></li>
 				<li><a href="https://github.com/BrynM" target="_blank">Bryn on GitHub</a></li>
 				<li><a href="http://brynmosher.com" target="_blank">Bryn's Home Page</a></li>
 			</ul>
@@ -673,17 +674,22 @@ function handle_menu_click ( ev ) {
 
 function handle_toc_click ( ev ) {
 	var ele = null
-		, tocI = null;
+		, tocI = null
+		, scroll = 0;
 	if ( bpmv.obj(ev) && bpmv.obj(ev.currentTarget) ) {
 		ele = $(ev.currentTarget);
 		if ( bpmv.obj(ele) && bpmv.num(ele.length) ) {
 			tocI = ele.attr( 'toc' );
+			$('html,body').stop( true, true );
 			if ( tocI ) {
-				$('html,body').stop( true, true );
-				$('html,body').animate( {
-						'scrollTop' : $('h2[toc='+tocI+']').offset().top - 50
-					}, 300 );
+				scroll = $('h2[toc='+tocI+']').offset().top - 10;
+			} else {
+				scroll = $('#readme').offset().top - 10;
 			}
+			$('html,body').animate( {
+					'scrollTop' : scroll
+			}, 300 );
+			handle_menu_click( ev );
 		}
 	}
 }
@@ -712,11 +718,14 @@ $(document).ready( function () {
 	$('.floating-close').click( handle_menu_click );
 
 	$('#normal_style').text( frameCss + '\n' + frameQuarterCss );
+	tocI = $('<li>Top</li>');
+	tocI.click( handle_toc_click );
+	toc.append( tocI );
 	for ( var aI = 0; aI < infos.length; aI++ ) {
 		tocH = $(infos[aI]);
-		tocH.attr( 'toc', aI );
+		tocH.attr( 'toc', aI+1 );
 		tocI = $('<li>'+tocH.text()+'</li>');
-		tocI.attr( 'toc', aI );
+		tocI.attr( 'toc', aI+1 );
 		tocI.click( handle_toc_click );
 		toc.append( tocI );
 	}
