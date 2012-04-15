@@ -1,0 +1,1 @@
+The documentation for jQuery.scaleFrame.js is available at <http://brynmosher.com/jQuery.scaleFrame.js/>.
