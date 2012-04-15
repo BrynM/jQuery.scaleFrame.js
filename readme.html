@@ -49,6 +49,10 @@ h1, h2, h3, h4, h5 {
 .clear {
 	clear: both;
 }
+#credits {
+	margin: 10px 0 0 0;
+	font-size: 80%;
+}
 .example {
 	background-color: LightBlue;
 	margin: 5px;
@@ -63,11 +67,11 @@ h1, h2, h3, h4, h5 {
 	padding : 5px;
 	padding-left : 30px;
 	background-color: rgba( 200, 200, 200, 0.9 );
-	background-image:         linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
-	background-image:      -o-linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
-	background-image:    -moz-linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
-	background-image:     -ms-linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
-	background-image: -webkit-linear-gradient( left , rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	background-image:         linear-gradient( left, rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	background-image:      -o-linear-gradient( left, rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	background-image:    -moz-linear-gradient( left, rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	background-image:     -ms-linear-gradient( left, rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
+	background-image: -webkit-linear-gradient( left, rgba( 254, 254, 254, 0.7 ) 25%, rgba( 240, 240, 240, 0.90 ) 95% );
 	border: 3px solid Navy;
 	z-index: 500;
 	font-size: 80%;
@@ -204,11 +208,8 @@ h1, h2, h3, h4, h5 {
 	padding: 0;
 }
 .info-li p {
-	margin : 0;
+	margin : 10px 0 0 0;
 	padding: 0;
-}
-.info-li p:not(:first-child) {
-	margin-top : 10px;
 }
 .myZoom {
 	width: 100%;
@@ -305,15 +306,16 @@ h1, h2, h3, h4, h5 {
 }
 #readme .header-links {
 	list-style-type: none;
+	color: white;
 	margin: 0;
 	padding: 5px;
 	font-size: 60%;
 	background-color: rgba( 0, 0, 128, 0.9 );
-	background-image:         linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
-	background-image:      -o-linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
-	background-image:    -moz-linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
-	background-image:     -ms-linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
-	background-image: -webkit-linear-gradient( left , rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	background-image:         linear-gradient( right, rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	background-image:      -o-linear-gradient( right, rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	background-image:    -moz-linear-gradient( right, rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	background-image:     -ms-linear-gradient( right, rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
+	background-image: -webkit-linear-gradient( right, rgba( 0, 0, 128, 0.65 ) 1%, rgba( 100, 100, 228, 0.95 ) 90% );
 	float: right;
 }
 #readme .header-links * a {
@@ -355,6 +357,8 @@ h1, h2, h3, h4, h5 {
 			<ul class="header-links">
 				<li><a href="https://github.com/BrynM/jQuery.scaleFrame.js" target="_blank">jQuery.scaleFrame.js on GitHub</a></li>
 				<li><a href="http://brynmosher.com/jQuery.scaleFrame.js/" target="_blank">jQuery.scaleFrame.js Online Docs</a></li>
+				<li><a href="https://github.com/BrynM/jQuery.scaleFrame.js/issues" target="_blank">Found a bug? File an issue.</a></li>
+				<li><a href="https://github.com/BrynM/jQuery.scaleFrame.js/issues" target="_blank">Suggestion? File an issue.</a></li>
 				<li><a href="https://github.com/BrynM" target="_blank">Bryn on GitHub</a></li>
 				<li><a href="http://brynmosher.com" target="_blank">Bryn's Home Page</a></li>
 			</ul>
@@ -364,10 +368,32 @@ h1, h2, h3, h4, h5 {
 		<ul class="info-ul">
 			<li class="info-li">
 				<h2>Copyright &amp; Credits</h2>
-				<ul>
-					<li></li>
+				<ul id="credits">
+					<li><a href="https://github.com/BrynM/jQuery.scaleFrame.js" target="_blank">jQuery.scaleFrame.js and this document</a> are Copyright &copy; 2012, <a href="http://brynmosher.com/" target="_blank">Bryn P. Mosher</a>.</li>
+					<li><a href="http://jquery.com/" target="_blank">jQuery</a> was created by <a href="http://jquery.org/about" target="_blank">John Resig</a> and is maintained by the <a href="http://sfconservancy.org/" target="_blank">Software Freedom Conservancy</a>.</li>
+					<li><a href="https://github.com/BrynM/bpmv" target="_blank">bpmv.js</a> (used in this page) is Copyright &copy; 2012, <a href="http://brynmosher.com/" target="_blank">Bryn P. Mosher</a>.</li>
+					<li><a href="https://github.com/" target="_blank">GitHub</a> (hosting this project) was founded by <a href="https://github.com/defunkt" tareget="_blank">Chris Wanstrath</a>, <a href="https://github.com/pjhyett" tareget="_blank">PJ Hyett</a> and <a href="https://github.com/mojombo" tareget="_blank">Tom Preston-Werner</a> and is run by the <a href="https://github.com/about" target="_blank">GitHub Team</a>.</li>
+					<li>The minified version of jQuery.scaleFrame.js (called jQuery.scaleFrame.min.js of course) was made using <a href="http://closure-compiler.appspot.com/home" target="_blank">Google's Closure Compiler</a>.</li>
 				</ul>
 			</li>
+			<li class="info-li">
+				<h2>License</h2>
+				<div>
+					<p>
+						This library is free software; you can redistribute it and/or modify it under the terms of the <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_new">GNU Library General Public License Version 2</a> as published by the Free Software Foundation.
+					</p>
+					<p>
+						This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+						without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+						See the <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_new">GNU General Public License</a> for more details.
+					</p>
+					<p>
+						You should have received a copy of the GNU Library General Public License Version 2 along with this library named as gpl-2.0.txt.
+						If not, you can find it at <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_new">http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a> or write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+					</p>
+				</div>
+			</li>
+
 			<li class="info-li">
 				<h2>Document Conventions</h2>
 				<p>
@@ -385,6 +411,9 @@ h1, h2, h3, h4, h5 {
 				</p>
 				<p>
 					Each &lt;IFRAME&gt; has been given a DarkRed border so that you can see their total area as well.
+				</p>
+				<p>
+					There are no &quot;screenshots&quot; on this page. The functionality you see is actual. Go ahead and click around inside of the &lt;IFRAME&gt;s.
 				</p>
 			</li>
 			<li class="info-li">
@@ -418,7 +447,7 @@ h1, h2, h3, h4, h5 {
 					It would be nice to have optional zoom controls and keep mind of the &lt;IFRAME&gt;'s CSS &quot;float&quot; value as well.
 				</p>
 				<p>
-					So that's what I did. I give you jQuery.fn.scaleFrame().
+					So that's what I did. I give you jQuery.fn.scaleFrame(). I honestly have no idea what I or anyone else is going to do with it. But, there it is. And it works for the most part.
 				</p>
 				<div class="clear" ></div>
 			</li>
@@ -458,7 +487,10 @@ h1, h2, h3, h4, h5 {
 					<tr>
 						<td>reApply</td>
 						<td>false</td>
-						<td><p>If jQuery.fn.scaleFrame() has already been applied to an element, remove it first and then re-create it using this newest call.</p></td>
+						<td><p>
+							If jQuery.fn.scaleFrame() has already been applied to an element, remove it first and then re-create it using this newest call.
+							Without this option set to true, if your selector includes elements that already have jQuery.fn.scaleFrame() applied, they will be skipped on the subsequent call.
+						</p></td>
 					</tr>
 					<tr>
 						<td>wrapClass</td>
@@ -633,8 +665,13 @@ h1, h2, h3, h4, h5 {
 				<div class="clear" ></div>
 			</li>
 			<li class="info-li">
-				<h2>With Options Example</h2>
+				<h2>With Custom Options Example</h2>
 				<p>
+					In this example, we're doing more of what I expect typical usage to be.
+					We're setting up a class to apply to our wrapper element, giving it a green-ish border.
+					We're enabling zoom controls, but only certain ones.
+					We're setting up some classes to apply to those zoom controls.
+					Finally, we're going to limit the range of zooming using the &quot;zoomMax&quot; and &quot;zoomMin&quot; options.
 				</p>
 				<pre class="pre-css"><code id="with_options_style"></code></pre>
 				<pre class="pre-html"><code>&#60;div class=&#34;example&#34;&#62;
@@ -649,6 +686,45 @@ h1, h2, h3, h4, h5 {
 				</div>
 				<div class="clear" ></div>
 			</li>
+			<li class="info-li">
+				<h2>Bonuses Baby!</h2>
+				<p>
+				</p>
+				<p>
+					There are only a couple of truly universal options.
+					The options are primarily for controlling zoom navigation, should you choose to use it.
+				</p>
+				<table class="options">
+					<tr><th>Bonus</th><th>Syntax</th><th>Description</th></tr>
+					<tr>
+						<td>jQuery.incrementAll()</td>
+						<td>$.incrementAll( soil, fertilizer, weeds, flo )</td>
+						<td><p>
+							This is a duplicate of the function bpmv.incall(), which is part of one of my other projects: <a href="https://github.com/BrynM/bpmv" target="_blank">bpmv.js</a>.
+							Please see that project's documentation on bpmv.incall() for a full explanation of its syntax.
+						</p></td>
+					</tr>
+					<tr>
+						<td>jQuery.fn.readMatrix()</td>
+						<td>$(selector).readMatrix()</td>
+						<td><p>
+							This will read the CSS transform matrix() from a matched element or set of matched elements.
+							If only one element is matched, jQuery.fn.readMatrix() will return a single six-value array representing the matrix().
+							If multiple elements are matched, jQuery.fn.readMatrix() will return an array of six-value arrays representing the matrix() of each matched element.
+						</p></td>
+					</tr>
+					<tr>
+						<td>jQuery.fn.readScale()</td>
+						<td>$(selector).readScale()</td>
+						<td><p>
+							This will read the CSS transform scale() from a matched element or set of matched elements.
+							If only one element is matched, jQuery.fn.readScale() will return a single two-value array representing the scale().
+							If multiple elements are matched, jQuery.fn.readScale() will return an array of two-value arrays representing the scale() of each matched element.
+						</p></td>
+					</tr>
+				<table>
+				<div class="clear" ></div>
+			</li>
 		</ul>
 	</div>
 
@@ -660,7 +736,7 @@ $(document).ready( function () {
 
 <script id="with_controls_scaleframe_setup">
 $(document).ready( function () {
-	$('#with_controls').scaleFrame( { 'zoom' : 0.1 } );
+	$('#with_controls').scaleFrame( { 'zoom' : 0.05 } );
 });
 </script>
 
