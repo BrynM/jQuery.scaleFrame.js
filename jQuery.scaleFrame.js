@@ -53,7 +53,7 @@
 										continue;
 									}
 									navsLast = navs.push( jQ('<li></li>') ) - 1;
-									navs[navsLast].text( currOpts['zoomStr'+zUp] );
+									navs[navsLast].html( currOpts['zoomStr'+zUp] );
 									if ( ( typeof(ourNav) == 'string' ) && classRgx.test( ourNav ) ) {
 										navs[navsLast].addClass( ourNav+'-control'+'-'+currOpts.zoomControls[aZ] );
 									}

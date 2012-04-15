@@ -2,10 +2,10 @@
 <html lang="en-US">
 <head>
 <meta charset="UTF-8">
-<title>scaleFrame</title>
+<title>jQuery.scaleFrame.js</title>
 <script src="https://raw.github.com/BrynM/bpmv/master/bpmv.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="https://raw.github.com/BrynM/jQuery.scaleFrame.js/master/jQuery.scaleFrame.js"></script>
+<script src="jQuery.scaleFrame.js"></script>
 <!-- good list of colors at http://www.w3schools.com/cssref/css_colornames.asp -->
 <style id="page_style">
 html, body {
@@ -233,7 +233,7 @@ h1, h2, h3, h4, h5 {
 	background-color: rgba( 128, 128, 128, 0.85);
 }
 .options {
-	margin: 0;
+	margin: 10px 0 0 0;
 	padding: 0;
 	border: 1px solid black;
 	border-collapse: collapse;
@@ -425,6 +425,14 @@ h1, h2, h3, h4, h5 {
 			<li class="info-li">
 				<h2>Syntax and Default Options Example</h2>
 				<p>
+					At its core, the syntax for using jQuery.fn.scaleFrame() is simple.
+					<pre class="pre-css"><code>$(selector).scaleFrame( options );</code></pre>
+				</p>
+				<p>
+					&quot;selector&quot; is, of course, your jQuery selector.
+					&quot;options&quot; is an optional Object containing the jQuery.fn.scaleFrame() options you would like applied.
+					See the section called &quot;Options&quot; for a complete listing of each option and its usage.
+					For now, here's an example usage with the default options.
 				</p>
 				<pre class="pre-css"><code id="default_options_style"></code></pre>
 				<pre class="pre-html"><code>&#60;div class=&#34;example&#34;&#62;
@@ -450,7 +458,7 @@ h1, h2, h3, h4, h5 {
 					<tr>
 						<td>reApply</td>
 						<td>false</td>
-						<td><p>If scaleFrame has already been applied to an element, remove it first and then re-create it using this newest call.</p></td>
+						<td><p>If jQuery.fn.scaleFrame() has already been applied to an element, remove it first and then re-create it using this newest call.</p></td>
 					</tr>
 					<tr>
 						<td>wrapClass</td>
@@ -535,7 +543,21 @@ h1, h2, h3, h4, h5 {
 						<td>[ &quot;min&quot;, &quot;minus&quot;, &quot;reset&quot;, &quot;whole&quot;, &quot;plus&quot;, &quot;max&quot; ]</td>
 						<td>
 							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option.</strong></p>
-							<p></p>
+							<p>
+								This is an Array containing the names of individual zoom controls to include.
+								If this Array is empty, no controls will be added.
+								The order of this Array dictates the order in which the individual controls will appear.
+							</p>
+							<p>The types of controls are as follows.
+								<ul>
+									<li><strong>max</strong> Scales the scale of the &lt;IFRAME&gt; directly to the value set in the &quot;zoomMax&quot; option.</li>
+									<li><strong>min</strong> Scales the scale of the &lt;IFRAME&gt; directly to the value set in the &quot;zoomMin&quot; option.</li>
+									<li><strong>minus</strong> Decrements the scale of the &lt;IFRAME&gt; by the value set in the &quot;zoom&quot; option.</li>
+									<li><strong>plus</strong> Increments the scale of the &lt;IFRAME&gt; by the value set in the &quot;zoom&quot; option.</li>
+									<li><strong>reset</strong> Scales the scale of the &lt;IFRAME&gt; directly to its original scal value.</li>
+									<li><strong>whole</strong> Scales the scale of the &lt;IFRAME&gt; directly to 100% of its size.</li>
+								</ul>
+							</p>
 						</td>
 					</tr>
 					<tr>
@@ -543,7 +565,7 @@ h1, h2, h3, h4, h5 {
 						<td>&quot;max&quot;</td>
 						<td>
 							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;max&quot; in the &quot;zoomControls&quot; option.</strong></p>
-							<p></p>
+							<p>String value which dictates the contents of the &quot;max&quot; zoom control. Strings containing HTMl are allowed.</p>
 						</td>
 					</tr>
 					<tr>
@@ -551,7 +573,7 @@ h1, h2, h3, h4, h5 {
 						<td>&quot;min&quot;</td>
 						<td>
 							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;min&quot; in the &quot;zoomControls&quot; option.</strong></p>
-							<p></p>
+							<p>String value which dictates the contents of the &quot;min&quot; zoom control. Strings containing HTMl are allowed.</p>
 						</td>
 					</tr>
 					<tr>
@@ -559,7 +581,7 @@ h1, h2, h3, h4, h5 {
 						<td>&quot;-&quot;</td>
 						<td>
 							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;minus&quot; in the &quot;zoomControls&quot; option.</strong></p>
-							<p></p>
+							<p>String value which dictates the contents of the &quot;minus&quot; zoom control. Strings containing HTMl are allowed.</p>
 						</td>
 					</tr>
 					<tr>
@@ -567,7 +589,7 @@ h1, h2, h3, h4, h5 {
 						<td>&quot;+&quot;</td>
 						<td>
 							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;plus&quot; in the &quot;zoomControls&quot; option.</strong></p>
-							<p></p>
+							<p>String value which dictates the contents of the &quot;plus&quot; zoom control. Strings containing HTMl are allowed.</p>
 						</td>
 					</tr>
 					<tr>
@@ -575,7 +597,7 @@ h1, h2, h3, h4, h5 {
 						<td>&quot;reset&quot;</td>
 						<td>
 							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;reset&quot; in the &quot;zoomControls&quot; option.</strong></p>
-							<p></p>
+							<p>String value which dictates the contents of the &quot;reset&quot; zoom control. Strings containing HTMl are allowed.</p>
 						</td>
 					</tr>
 					<tr>
@@ -583,7 +605,7 @@ h1, h2, h3, h4, h5 {
 						<td>&quot;100%&quot;</td>
 						<td>
 							<p><strong>Totally irrelevant if not using the &quot;zoom&quot; option or if not using &quot;whole&quot; in the &quot;zoomControls&quot; option.</strong></p>
-							<p></p>
+							<p>String value which dictates the contents of the &quot;whole&quot; zoom control. Strings containing HTMl are allowed.</p>
 						</td>
 					</tr>
 				</table>
@@ -602,6 +624,12 @@ h1, h2, h3, h4, h5 {
 					<iframe id="with_controls" src="http://brynmosher.com/index.php?conts=3d&amp;theme=half" class="frame-quarter"></iframe>
 					<div class="clear" ></div>
 				</div>
+				<div class="clear" ></div>
+				<p>
+					As you can see in the result, the zoom controls appear in an unstyled &lt;UL&gt;.
+					Despite being unstyled, the controls are functional.
+					Notice that the background-color of the &quot;example&quot; CSS class is visible in the layout space the controls take up.
+				</p>
 				<div class="clear" ></div>
 			</li>
 			<li class="info-li">
@@ -702,22 +730,23 @@ $(document).ready( function () {
 		, tocI = null
 		, tocH = null
 		, appliedCss = $('#page_style').text().replace( tabRgx, '   ').replace( lineRgx, '' )
+		, exampleCss = appliedCss.match( /\.example\s*\{[^\}]+\}/ ).toString()
 		, frameQuarterCss = appliedCss.match( /\.frame-quarter\s*\{[^\}]+\}/ ).toString()
 		, frameCss = appliedCss.match( /iframe\s*\{[^\}]+\}/ ).toString();
 	$('#with_controls_scaleframe_setup_code').text( bpmv.txt2html( $('#with_controls_scaleframe_setup').text().replace( tabRgx, '   ').replace( lineRgx, '' ) ) );
-	$('#with_controls_style').text( frameCss + '\n' + frameQuarterCss );
+	$('#with_controls_style').text( frameCss + '\n' + exampleCss + '\n' + frameQuarterCss );
 
 	$('#with_options_scaleframe_setup_code').text( bpmv.txt2html( $('#with_options_scaleframe_setup').text().replace( tabRgx, '   ').replace( lineRgx, '' ) ) );
-	$('#with_options_style').text( appliedCss.match( /\.border-green\s*\{[^\}]+\}/ ).toString() + '\n' + frameCss + '\n' + frameQuarterCss + '\n' + appliedCss.match( /\.myZoom[^\{}]*\{[^\}]+\}/g ).join( '\n' ) );
+	$('#with_options_style').text( appliedCss.match( /\.border-green\s*\{[^\}]+\}/ ).toString() + '\n' + frameCss + '\n' + exampleCss + '\n' + frameQuarterCss + '\n' + appliedCss.match( /\.myZoom[^\{}]*\{[^\}]+\}/g ).join( '\n' ) );
 
 	$('#default_options_scaleframe_setup_code').text( bpmv.txt2html( $('#default_options_scaleframe_setup').text().replace( tabRgx, '   ').replace( lineRgx, '' ) ) );
-	$('#default_options_style').text( frameCss + '\n' + frameQuarterCss );
+	$('#default_options_style').text( frameCss + '\n' + exampleCss + '\n' + frameQuarterCss );
 
 	$('#page_style_code').text( bpmv.txt2html( appliedCss ) );
 	$('.floating-tabby-item').click( handle_menu_click );
 	$('.floating-close').click( handle_menu_click );
 
-	$('#normal_style').text( frameCss + '\n' + frameQuarterCss );
+	$('#normal_style').text( frameCss + '\n' + exampleCss + '\n' + frameQuarterCss );
 	tocI = $('<li>Top</li>');
 	tocI.click( handle_toc_click );
 	toc.append( tocI );
